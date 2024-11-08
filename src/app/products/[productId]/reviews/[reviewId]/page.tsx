@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
 
+function getRandomInt(count: number) {
+    return Math.floor(Math.random() * count);
+}        
+
 export default async function ReviewDetail({
     params,
 }: {
@@ -8,6 +12,10 @@ export default async function ReviewDetail({
         reviewId: string;
     };
 }) {
+    const randomInt = getRandomInt(2);
+    if (randomInt === 1) {
+        throw new Error("Error Loading Review Detail"); 
+    }
     const reviewId = parseInt(params.reviewId);
 
     // Check if reviewId is greater than 5 and return `notFound` if so
